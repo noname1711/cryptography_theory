@@ -277,32 +277,40 @@ string invnhanmbox (string temps, int x){
 }
 
 //===================================================
-void Nhap(){
-    cout << "Nhap text (length = 16): ";
-    string s = "le.viet.hung";   //day text can ma hoa
-    while(s.length() < 16){
-        s = s + "";
+void Nhap() {
+    string s;
+    cout << "Nhap text (length = 16, khong co khoang trang hoac xuong dong): ";
+    cin >> s;  // Nhập chuỗi không có khoảng trắng hoặc xuống dòng
+    // Nếu chuỗi ngắn hơn 16 ký tự, thêm khoảng trắng để đủ 16 ký tự
+    while (s.length() < 16) {
+        s += " ";
     }
-    cout<< s<<endl;
-    int ii =0;
-    for (int i =1 ; i<=4; i++){
-        for (int j =1; j <= 4; j ++){
+    // Nếu chuỗi dài hơn 16 ký tự, cắt bớt để chỉ lấy 16 ký tự
+    if (s.length() > 16) {
+        s = s.substr(0, 16);
+    }
+    int ii = 0;
+    for (int i = 1; i <= 4; i++) {
+        for (int j = 1; j <= 4; j++) {
             char temp = s[ii];
-            state[i][j] = get16From2(get2FromInt(temp));
+            state[i][j] = get16From2(get2FromInt(temp)); 
             ii++;
         }
     }
-    cout<< "nhap key (length = 16): ";
-    string sk = "hungle1711";   //day la mat khau
-    while( sk.length() < 16){
-        sk = sk + "";
+    string sk;
+    cout << "Nhap key (length = 16, khong co khoang trang hoac xuong dong): ";
+    cin >> sk;  
+    while (sk.length() < 16) {
+        sk += " ";
     }
-    cout<< sk<<endl;
-    ii =0;
-    for (int i =1; i<= 4 ; i++){
-        for(int j =1; j <= 4; j ++){
+    if (sk.length() > 16) {
+        sk = sk.substr(0, 16);
+    }
+    ii = 0;
+    for (int i = 1; i <= 4; i++) {
+        for (int j = 1; j <= 4; j++) {
             char temp = sk[ii];
-            cipherkey[i][j] = get16From2(get2FromInt(temp));
+            cipherkey[i][j] = get16From2(get2FromInt(temp));  
             ii++;
         }
     }
